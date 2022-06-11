@@ -56,5 +56,8 @@
     "serve-favicon": "^2.3.0",
     "start-server-and-test": "^1.0.0",
     "vinyl-fs": "github:gulpjs/vinyl-fs#59386ca"
+  },
+  "overrides": {
+    "graceful-fs": "^4.2.9"
   }
 }
