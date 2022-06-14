@@ -31,14 +31,22 @@ var app = app || {};
 	app.TodoModel.prototype.addTodo = function (title) {
 		const timeElapsed = Date.now();
 		const today = new Date(timeElapsed);
-		this.todos = this.todos.concat({
-			id: Utils.uuid(),
-			title: title,
-			completed: false,
-			date: today.toDateString()
-		});
-
-		this.inform();
+		let flag = false;
+		this.todos.forEach(item=>{
+			if (item.title === title){
+				flag=true
+			}
+		})
+		if(!flag){
+			this.todos = this.todos.concat({
+				id: Utils.uuid(),
+				title: title,
+				completed: false,
+				date: today.toDateString()
+			});
+	
+			this.inform();
+		}
 	};
 
 	app.TodoModel.prototype.toggleAll = function (checked) {
