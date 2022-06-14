@@ -21,7 +21,8 @@ var app = app || {};
 			return {
 				nowShowing: app.ALL_TODOS,
 				editing: null,
-				newTodo: ''
+				newTodo: '',
+				sort:"ASC"
 			};
 		},
 
@@ -84,6 +85,15 @@ var app = app || {};
 			this.props.model.clearCompleted();
 		},
 
+		toggleSort: function () {
+			this.props.model.toggleSort(this.state.sort);
+			if(this.state.sort === "ASC"){
+				this.setState({sort: "DESC"});
+			} else {
+				this.setState({sort: "ASC"});
+			}
+		},
+
 		render: function () {
 			var footer;
 			var main;
@@ -144,6 +154,7 @@ var app = app || {};
 						<label
 							htmlFor="toggle-all"
 						/>
+						<label onClick={this.toggleSort} style={{float:"right", marginTop:-30, marginRight: 20}}>Sort by Date: {this.state.sort}</label>
 						<ul className="todo-list">
 							{todoItems}
 						</ul>

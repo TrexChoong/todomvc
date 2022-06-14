@@ -30,7 +30,6 @@ var app = app || {};
 
 	app.TodoModel.prototype.addTodo = function (title) {
 		const timeElapsed = Date.now();
-		const today = new Date(timeElapsed);
 		let flag = false;
 		this.todos.forEach(item=>{
 			if (item.title === title){
@@ -42,7 +41,7 @@ var app = app || {};
 				id: Utils.uuid(),
 				title: title,
 				completed: false,
-				date: today.toDateString()
+				date: timeElapsed
 			});
 	
 			this.inform();
@@ -95,4 +94,15 @@ var app = app || {};
 		this.inform();
 	};
 
+	app.TodoModel.prototype.toggleSort = function (sort) {	
+		if(sort === "ASC"){
+			this.todos = this.todos.sort(function(a,b){
+				return Math.sign(b.date - a.date);
+			})
+		} else {
+			this.todos = this.todos.sort(function(a,b){
+				return Math.sign(a.date - b.date);
+			})
+		}
+	};
 })();

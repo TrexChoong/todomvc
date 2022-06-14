@@ -76,6 +76,7 @@ var app = app || {};
 		},
 
 		render: function () {
+			const today = new Date(this.props.todo.date);
 			return (
 				<li className={classNames({
 					completed: this.props.todo.completed,
@@ -89,7 +90,7 @@ var app = app || {};
 							onChange={this.props.onToggle}
 						/>
 							<label onDoubleClick={this.handleEdit}>
-								{this.props.todo.title} <span style={{float:"right", marginRight:40}}>{this.props.todo.date}</span>
+								{this.props.todo.title} <span style={{float:"right", marginRight:40}}>{this.props.todo.date?today.toLocaleTimeString():""}</span>
 							</label>
 						<button className="destroy" onClick={this.props.onDestroy} />
 					</div>
