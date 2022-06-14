@@ -10,8 +10,6 @@ var app = app || {};
 
 	var ESCAPE_KEY = 27;
 	var ENTER_KEY = 13;
-	const timeElapsed = Date.now();
-	const today = new Date(timeElapsed);
 
 	app.TodoItem = React.createClass({
 		handleSubmit: function (event) {
@@ -91,7 +89,7 @@ var app = app || {};
 							onChange={this.props.onToggle}
 						/>
 							<label onDoubleClick={this.handleEdit}>
-								{this.props.todo.title} <span style={{float:"right", marginRight:40}}>{today.toDateString()}</span>
+								{this.props.todo.title} <span style={{float:"right", marginRight:40}}>{this.props.todo.date}</span>
 							</label>
 						<button className="destroy" onClick={this.props.onDestroy} />
 					</div>

@@ -29,10 +29,13 @@ var app = app || {};
 	};
 
 	app.TodoModel.prototype.addTodo = function (title) {
+		const timeElapsed = Date.now();
+		const today = new Date(timeElapsed);
 		this.todos = this.todos.concat({
 			id: Utils.uuid(),
 			title: title,
-			completed: false
+			completed: false,
+			date: today.toDateString()
 		});
 
 		this.inform();
