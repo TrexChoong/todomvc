@@ -10,13 +10,15 @@ var app = app || {};
 
 	var ESCAPE_KEY = 27;
 	var ENTER_KEY = 13;
+	const timeElapsed = Date.now();
+	const today = new Date(timeElapsed);
 
 	app.TodoItem = React.createClass({
 		handleSubmit: function (event) {
 			var val = this.state.editText.trim();
 			if (val) {
 				this.props.onSave(val);
-				this.setState({editText: val});
+				this.setState({ editText: val });
 			} else {
 				this.props.onDestroy();
 			}
@@ -24,12 +26,12 @@ var app = app || {};
 
 		handleEdit: function () {
 			this.props.onEdit();
-			this.setState({editText: this.props.todo.title});
+			this.setState({ editText: this.props.todo.title });
 		},
 
 		handleKeyDown: function (event) {
 			if (event.which === ESCAPE_KEY) {
-				this.setState({editText: this.props.todo.title});
+				this.setState({ editText: this.props.todo.title });
 				this.props.onCancel(event);
 			} else if (event.which === ENTER_KEY) {
 				this.handleSubmit(event);
@@ -38,12 +40,12 @@ var app = app || {};
 
 		handleChange: function (event) {
 			if (this.props.editing) {
-				this.setState({editText: event.target.value});
+				this.setState({ editText: event.target.value });
 			}
 		},
 
 		getInitialState: function () {
-			return {editText: this.props.todo.title};
+			return { editText: this.props.todo.title };
 		},
 
 		/**
@@ -88,9 +90,9 @@ var app = app || {};
 							checked={this.props.todo.completed}
 							onChange={this.props.onToggle}
 						/>
-						<label onDoubleClick={this.handleEdit}>
-							{this.props.todo.title}
-						</label>
+							<label onDoubleClick={this.handleEdit}>
+								{this.props.todo.title} <span style={{float:"right", marginRight:40}}>{today.toDateString()}</span>
+							</label>
 						<button className="destroy" onClick={this.props.onDestroy} />
 					</div>
 					<input
