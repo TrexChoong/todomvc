@@ -27,7 +27,7 @@ var app = app || {};
 			return (
 				<footer className="footer">
 					<span className="todo-count">
-						<strong>{this.props.count}</strong> {activeTodoWord} left
+						<strong>{this.props.count} / {this.props.count + this.props.completedCount}</strong> {activeTodoWord} left
 					</span>
 					<ul className="filters">
 						<li>
